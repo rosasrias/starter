@@ -8,6 +8,12 @@ return {
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
+    -- NvChad lo carga con `event = "User FilePost"`. Eso hace que el primer
+    -- fichero abierto en la sesión se quede SIN LSP: `vim.lsp.enable()`
+    -- registra su autocmd de FileType cuando el buffer ya tiene el filetype
+    -- puesto, así que ese buffer no arranca ningún servidor.
+    -- Cargándolo al inicio, todos los buffers encuentran su LSP.
+    lazy = false,
     config = function()
       require "configs.lspconfig"
     end,
@@ -16,23 +22,30 @@ return {
   -- mini.icons is configured by NvChad's spec (nvim-mini/mini.icons)
 
   {
-    "rosasrias/code-runner.nvim",
+    "rosasrias/Ignition.nvim",
     opts = {
       terminal = { direction = "horizontal" },
       autoclose = false,
     },
     keys = {
-      { "<C-b>", "<cmd>CodeRun<CR>", mode = { "n", "i" }, desc = "code-runner: run" },
-      { "<leader>rl", "<cmd>CodeRunLast<CR>", desc = "code-runner: run last" },
+      { "<C-b>", "<cmd>IgnitionRun<CR>", mode = { "n", "i" }, desc = "Ignition: run" },
+      { "<leader>rl", "<cmd>IgnitionRunLast<CR>", desc = "Ignition: run last" },
     },
   },
 
   {
-    "rosasrias/DotnetForge",
-    cmd = { "DotnetForge", "DotnetNewProject" },
+    "rosasrias/Kiln.nvim",
+    cmd = {
+      "KilnProject",
+      "KilnNew",
+      "KilnNewNamespace",
+      "KilnNewPackage",
+      "KilnDelete",
+      "KilnInfo",
+    },
     opts = {},
     keys = {
-      { "<leader>dn", "<cmd>DotnetForge<CR>", desc = "dotnetforge: new project" },
+      { "<leader>dn", "<cmd>KilnProject<CR>", desc = "kiln: new project" },
     },
   },
 

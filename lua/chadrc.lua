@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedarkpro",
-	transparency = true,
+	theme = "onenord",
+	transparency = false,
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
@@ -40,7 +40,7 @@ M.mason = {
   pkgs = {
     -- LSPs
     "clangd",
-    "csharp-language-server",
+    "roslyn-language-server", -- C# (Roslyn oficial)
     "typescript-language-server", -- ts_ls
     "jdtls",
     "intelephense",
